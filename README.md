@@ -2,7 +2,7 @@
 
 ## Motivation
 
-[KWin](https://userbase.kde.org/KWin/en) is the window manager used in KDE Plasma but increasingly also sees adoption on Qt-based desktop systems that are otherwise not using KDE Plasma, including CutefishOS, CyberOS, Deepin, Nitrux, and [helloSystem](hellosystem.github.io) beginning with 0.5.0. However, KWin and its packaging are currently not optimized for use outside of KDE Plasma yet, drawing in "half of KDE Plasma" as dependencies.
+[KWin](https://userbase.kde.org/KWin/en) is the window manager used in KDE Plasma. It increasingly sees adoption on Qt-based desktop systems that are otherwise not using KDE Plasma, including CutefishOS, CyberOS, Deepin, Nitrux, and [helloSystem](hellosystem.github.io) beginning with 0.5.0. However, KWin and its packaging are currently not optimized for use outside of KDE Plasma yet, drawing in "half of KDE Plasma" as dependencies.
 
 Installing the `plasma5-kwin` package on helloSystem draws in hundreds of megabytes. 
 
