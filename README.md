@@ -25,3 +25,7 @@ Alternatively, download a pre-made `KWin.app.zip` from GitHub Releases.
 * When trying to also replace the libKF5KIOCore, libKF5KIOWidgets, libKF5XmlGui libraries with stubs, then we get `dbus[2585]: arguments to dbus_message_iter_append_basic() were incorrect, assertion "*bool_p == 0 || *bool_p == 1" failed in file dbus-message.c line 2783.` Possibly this can be solved by patching the KWin source code. Any help appreciated.
 * When trying to also replace the libKF5ConfigGui and libKF5ConfigWidgets libraries with stubs, then `kwin_x11` refuses to run even when invoked with `--lock`. Possibly this can be solved by patching the KWin source code. Any help appreciated.
 * It is not clear how central the following are to the operation of KWin and whether making them optional would be feasible: libKF5Plasma, libKF5GuiAddons, libKF5Package, libKF5ConfigGui, libKF5Service, libKF5CoreAddons, libKF5I18n. Trying to replace those with stubs leads to crashes. Possibly this can be solved by patching the KWin source code. Any help appreciated.
+
+# Acknowledgements
+
+* https://github.com/jackyf/so-stub/
