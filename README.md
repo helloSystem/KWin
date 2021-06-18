@@ -32,6 +32,11 @@ This repository is intended as a starting point to work with upstream KWin devel
 * When trying to also replace the libKF5ConfigGui and libKF5ConfigWidgets libraries with stubs, then `kwin_x11` refuses to run even when invoked with `--lock`. Possibly this can be solved by patching the KWin source code. _Any help appreciated._
 * It is not clear how central the following are to the operation of KWin and whether making them optional would be feasible: libKF5Plasma, libKF5GuiAddons, libKF5Package, libKF5ConfigGui, libKF5Service, libKF5CoreAddons, libKF5I18n. Trying to replace those with stubs leads to crashes. Possibly this can be solved by patching the KWin source code. _Any help appreciated._
 
+## Known issues
+
+* Snapping windows to screen edges does not work. It is unclear why.
+* The highlight symbol that should appear when one is moving the mouse at the upper-left edge of the screen is missing. It still needs to be bundled.
+
 ## TODO
 
 * Work with upstream to remove the need for stub libraries by making the respective libraries weak (optional) dependencies or removing them altogether as dependencies
