@@ -4,7 +4,7 @@
 
 Installing the `plasma5-kwin` package on FreeBSD draws in hundreds of megabytes. Hence this approach at packaging KWin and BreezeEnhanced in a way that minimizes its dependencies.
 
-The resulting `KWin.app` is smaller by roughly a factor of 10 compared to FreeBSD packaging.
+The resulting `KWin.app` [application bundle](https://hellosystem.github.io/docs/developer/application-bundles) is smaller by roughly a factor of 10 compared to FreeBSD packaging.
 
 ## Running
 
