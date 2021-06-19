@@ -120,22 +120,22 @@ task:
       - cd kwin
       - git checkout "Plasma/5.12" # Workaround for: Could not find a configuration file for package "ECM" that is compatible with requested version "5.82".
       - mkdir build ; cd build
-      - cmake "$KDE_WORKSPACE" -DCMAKE_BUILD_TYPE=release \
-      -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_KF5Runner=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_Breeze=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_gbm=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
-      -DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
-      ..
+      - | cmake "$KDE_WORKSPACE" -DCMAKE_BUILD_TYPE=release \
+        -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Runner=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_Breeze=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_gbm=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
+        -DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
+        ..
       - make -j$(sysctl -n hw.ncpu)
 #    binaries_artifacts:
 #        path: drm-fbsd12.0-kmod-*.txz
