@@ -68,12 +68,7 @@ cat > ./KWin.app/KWin <<\EOF
 
 HERE="$(dirname "$(readlink -f "${0}")")"
 
-if [ ! -e "${HOME}"/.local/share/kwin ] ; then
-  mkdir -p "${HOME}"/.local/share/
-  cp -r "${HERE}/Resources/share/kwin" "${HOME}"/.local/share/
-fi
-
-exec env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/KWin" --replace --lock --no-kactivities "$@"
+exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/KWin" --replace --lock --no-kactivities "$@"
 
 # TODO: Use QCoreApplication::addLibraryPath() to also load plugins
 # from a location relative to the KWin executable, removing the need for this file
@@ -110,7 +105,7 @@ cp /usr/local/lib/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/pl
 # Bundle /usr/local/lib/qt5/plugins/platforms/org.kde.kwin.scenes
 cp -r /usr/local/lib/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
 
-# FIXME: How to get these loaded from within the .app bundle?
+# Get these loaded from within the .app bundle using $XDG_DATA_DIRS
 mkdir -p ./KWin.app/Resources/share/
 cp -r /usr/local/share/kwin ./KWin.app/Resources/share/
 
