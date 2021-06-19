@@ -4,7 +4,7 @@
 
 [KWin](https://userbase.kde.org/KWin/en) is the window manager used in KDE Plasma. It increasingly sees adoption on Qt-based desktop systems that are otherwise not using KDE Plasma, including CutefishOS, CyberOS, Deepin, Nitrux, and [helloSystem](hellosystem.github.io) beginning with 0.5.0. However, KWin and its packaging are currently not optimized for use outside of KDE Plasma yet, drawing in "half of KDE Plasma" as dependencies.
 
-Installing the `plasma5-kwin` package on helloSystem draws in hundreds of megabytes. 
+Installing the FreeBSD `plasma5-kwin` package on helloSystem draws in hundreds of megabytes. 
 
 ```
 FreeBSD% sudo pkg install plasma5-kwin
@@ -162,6 +162,34 @@ This repository is intended as a starting point to work with upstream KWin devel
 
 * Snapping windows to screen edges does not work. It is unclear why.
 * The highlight symbol that should appear when one is moving the mouse at the upper-left edge of the screen is missing. It still needs to be bundled.
+
+## Next steps
+
+Once we move on to compiling `kwin_x11` ourselves rather than using the one from the FreeBSD `plasma5-kwin` package, we can:
+
+Run `ccmake .` in the build folder, there are some KWin build-time switches.
+
+Also, make output includes "feature summary" that lists optional dependencies with explanation for what they are used. They can be disabled like this:
+
+https://cmake.org/cmake/help/latest/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html
+
+```
+-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_KF5Runner=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_Breeze=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_gbm=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
+-DCMAKE_DISABLE_FIND_PACKAGE_PkgConfig
+```
 
 ## TODO
 
