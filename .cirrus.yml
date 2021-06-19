@@ -118,6 +118,7 @@ task:
       # mv work/pkg/* "drm-fbsd12.0-kmod-$(uname -r | sed 's,-.*,,')$(uname -m).txz"
       - git clone https://invent.kde.org/plasma/kwin
       - cd kwin
+      - git checkout "Plasma/5.12" # Workaround for: Could not find a configuration file for package "ECM" that is compatible with requested version "5.82".
       - mkdir build ; cd build
       - cmake "$KDE_WORKSPACE" -DCMAKE_BUILD_TYPE=release ..
       - make -j$(sysctl -n hw.ncpu)
