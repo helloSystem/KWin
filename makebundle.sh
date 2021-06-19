@@ -105,6 +105,9 @@ cp /usr/local/lib/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/pl
 # Bundle /usr/local/lib/qt5/plugins/platforms/org.kde.kwin.scenes
 cp -r /usr/local/lib/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
 
+# Bundle libstdc++.so.6
+cp -r /usr/local/lib/gcc10/libstdc++.so.6 ./KWin.app/Resources/lib
+
 # Get these loaded from within the .app bundle using $XDG_DATA_DIRS
 mkdir -p ./KWin.app/Resources/share/
 cp -r /usr/local/share/kwin ./KWin.app/Resources/share/
