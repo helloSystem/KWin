@@ -8,7 +8,8 @@ task:
       - ASSUME_ALWAYS_YES=yes pkg bootstrap -f
       # Information from https://www.freshports.org/x11-wm/plasma5-kwin
       - |
-        pkg install -y devel/evdev-proto \
+        pkg install -y git \
+        devel/evdev-proto \
         x11-servers/xwayland-devel \
         x11/plasma-wayland-protocols \
         devel/cmake \
