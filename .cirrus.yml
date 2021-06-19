@@ -127,7 +127,6 @@ task:
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
@@ -137,6 +136,7 @@ task:
         -DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
         ..
+        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \ # Would result in: KF5ConfigWidgets could not be found because dependency KF5Auth could not befound.
       - make -j$(sysctl -n hw.ncpu)
 #    binaries_artifacts:
 #        path: drm-fbsd12.0-kmod-*.txz
