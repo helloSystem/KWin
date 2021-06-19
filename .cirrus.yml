@@ -6,6 +6,7 @@ task:
 
     build_script:
       - ASSUME_ALWAYS_YES=yes pkg bootstrap -f
+      # Information from https://www.freshports.org/x11-wm/plasma5-kwin
       - |
         pkg install -y devel/evdev-proto \
         x11-servers/xwayland-devel \
