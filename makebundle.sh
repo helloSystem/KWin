@@ -68,6 +68,11 @@ cat > ./KWin.app/KWin <<\EOF
 
 HERE="$(dirname "$(readlink -f "${0}")")"
 
+if [ ! -e "${HOME}"/.local/share/kwin ] ; then
+  mkdir -p "${HOME}"/.local/share/
+  cp -r "${HERE}/Resources/share/kwin" "${HOME}"/.local/share/
+fi
+
 exec env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/KWin" --replace --lock --no-kactivities "$@"
 
 # TODO: Use QCoreApplication::addLibraryPath() to also load plugins
@@ -80,6 +85,7 @@ exec env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" 
 #        libxcb-cursor.so.0 => not found (0)
 #
 # --> sudo pkg install -y xcb-util-cursor
+EOF
 
 # Are these needed to be installed in the system?
 # Why can't D-Bus work without having to (as root) install files into the filesystem?
@@ -88,7 +94,6 @@ exec env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" 
 # /usr/local/share/dbus-1/interfaces/org.kde.kwin.ColorCorrect.xml
 # /usr/local/share/dbus-1/interfaces/org.kde.kwin.Compositing.xml
 # /usr/local/share/dbus-1/interfaces/org.kde.kwin.Effects.xml
-EOF
 
 chmod +x ./KWin.app/KWin
 
@@ -105,8 +110,9 @@ cp /usr/local/lib/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/pl
 # Bundle /usr/local/lib/qt5/plugins/platforms/org.kde.kwin.scenes
 cp -r /usr/local/lib/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
 
-# Bundle libstdc++.so.6
-cp -r /usr/local/lib/gcc10/libstdc++.so.6 ./KWin.app/Resources/lib
+# FIXME: How to get these loaded from within the .app bundle?
+mkdir -p ./KWin.app/Resources/share/
+cp -r /usr/local/share/kwin ./KWin.app/Resources/share/
 
 # Icon
 wget -c "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Breezeicons-apps-48-kwin.svg/256px-Breezeicons-apps-48-kwin.svg.png" -O KWin.app/Resources/KWin.png
