@@ -1,0 +1,117 @@
+task:
+    freebsd_instance:
+      matrix:
+        - image: freebsd-12-1-release-amd64
+        # image: freebsd-12-2-release-amd64
+
+    build_script:
+      - ASSUME_ALWAYS_YES=yes pkg bootstrap -f
+      - |
+        pkg install -y devel/evdev-proto \
+        x11-servers/xwayland-devel \
+        x11/plasma-wayland-protocols \
+        devel/cmake \
+        devel/ninja \
+        devel/gettext-tools \
+        x11-themes/plasma5-breeze \
+        devel/kf5-kdoctools \
+        x11/kf5-kinit \
+        x11/plasma5-kwayland-integration \
+        devel/kf5-kservice \
+        devel/pkgconf \
+        x11/libICE \
+        x11/libSM \
+        x11/libX11 \
+        x11/libxcb \
+        x11/libXext \
+        x11/libXi \
+        devel/qt5-buildtools \
+        devel/qt5-qmake \
+        x11-toolkits/qt5-uiplugin \
+        devel/qt5-uitools \
+        x11-servers/xwayland-devel \
+        x11/plasma-wayland-protocols \
+        x11-themes/plasma5-breeze \
+        x11/kf5-kinit \
+        x11/plasma5-kwayland-integration \
+        devel/kf5-kservice \
+        lang/python38 \
+        x11/libICE \
+        x11/libSM \
+        x11/libX11 \
+        x11/libxcb \
+        x11/libXext \
+        x11/libXi \
+        x11-toolkits/qt5-quickcontrols2 \
+        x11-toolkits/qt5-uiplugin \
+        devel/qt5-uitools \
+        x11-toolkits/qt5-virtualkeyboard \
+        x11/libXcursor \
+        graphics/libdrm \
+        graphics/libepoxy \
+        devel/libepoll-shim \
+        x11-fonts/fontconfig \
+        print/freetype2 \
+        x11/libinput \
+        devel/libudev-devd \
+        graphics/lcms2 \
+        graphics/wayland \
+        x11/xcb-util-cursor \
+        x11/xcb-util-wm \
+        x11/xcb-util-image \
+        x11/xcb-util-keysyms \
+        x11/libxkbcommon \
+        devel/gettext-runtime \
+        graphics/mesa-libs \
+        devel/glib20 \
+        devel/gettext-runtime \
+        x11/kf5-kactivities \
+        x11-toolkits/kf5-attica \
+        devel/kf5-kauth \
+        textproc/kf5-kcodecs \
+        x11-toolkits/kf5-kcompletion \
+        devel/kf5-kconfig \
+        x11-toolkits/kf5-kconfigwidgets \
+        devel/kf5-kcoreaddons \
+        devel/kf5-kcrash \
+        x11-wm/plasma5-kdecoration \
+        x11/kf5-kglobalaccel \
+        devel/kf5-ki18n \
+        x11-themes/kf5-kiconthemes \
+        devel/kf5-kidletime \
+        x11-toolkits/kf5-kjobwidgets \
+        devel/kf5-kcmutils \
+        devel/kf5-kdeclarative \
+        devel/kf5-kio \
+        security/plasma5-kscreenlocker \
+        x11/plasma5-kwayland-server \
+        devel/kf5-knewstuff \
+        devel/kf5-knotifications \
+        devel/kf5-kpackage \
+        x11/kf5-plasma-framework \
+        x11/kf5-krunner \
+        textproc/kf5-sonnet \
+        x11-toolkits/kf5-ktextwidgets \
+        x11/kf5-kwayland \
+        x11-toolkits/kf5-kwidgetsaddons \
+        x11/kf5-kwindowsystem \
+        x11-toolkits/kf5-kxmlgui \
+        devel/qt5-concurrent \
+        devel/qt5-core \
+        devel/qt5-dbus \
+        x11-toolkits/qt5-declarative \
+        x11-toolkits/qt5-gui \
+        multimedia/qt5-multimedia \
+        net/qt5-network \
+        devel/qt5-script \
+        comms/qt5-sensors \
+        devel/qt5-testlib \
+        x11-toolkits/qt5-widgets \
+        x11/qt5-x11extras \
+        textproc/qt5-xml
+
+    install_script: 
+      - make BATCH=yes package
+      # mv work/pkg/* "drm-fbsd12.0-kmod-$(uname -r | sed 's,-.*,,')$(uname -m).txz"
+#    binaries_artifacts:
+#        path: drm-fbsd12.0-kmod-*.txz
