@@ -162,6 +162,7 @@ This repository is intended as a starting point to work with upstream KWin devel
 
 * Snapping windows to screen edges does not work. It is unclear why.
 * The highlight symbol that should appear when one is moving the mouse at the upper-left edge of the screen is missing. It still needs to be bundled.
+* Seemingly this breaks entering text into the search box in helloSystem Menu
 
 ## Next steps
 
