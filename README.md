@@ -138,7 +138,7 @@ This repository is intended as a starting point to work with upstream KWin devel
 ## Running
 
 * Run [helloSystem 0.4.0 Live ISO](https://github.com/helloSystem/ISO/releases/tag/r0.4.0) (it does not contain the `plasma5-kwin` and `breezeenhanced` packages nor many of their dependencies)
-* `sudo pkg install -y xcb-util-cursor`
+* `sudo pkg install -y xcb-util-cursor qt5-sensors qt5-wayland`
 * Download [KWin.app.zip](../../releases/download/latest/KWin.app.zip) from GitHub Releases
 * Double-click to open the zip file
 * Double-click KWin to launch it
