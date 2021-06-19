@@ -165,7 +165,7 @@ This repository is intended as a starting point to work with upstream KWin devel
 ## TODO
 
 * Work with upstream to remove the need for stub libraries by making the respective libraries weak (optional) dependencies or removing them altogether as dependencies
-* Add a `.cirrus-ci.yml` to this repository that builds KWin from source on FreeBSD 12, containing the source code changes
+* Get `.cirrus.yml` working that builds KWin from source on FreeBSD 12, containing the source code changes
 
 ## Acknowledgements
 
