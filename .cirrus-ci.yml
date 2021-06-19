@@ -110,8 +110,9 @@ task:
         x11/qt5-x11extras \
         textproc/qt5-xml
 
-    install_script: 
-      - make BATCH=yes package
+    install_script:
+      - cd plasma5-kwin
+      - make BATCH=yes
       # mv work/pkg/* "drm-fbsd12.0-kmod-$(uname -r | sed 's,-.*,,')$(uname -m).txz"
 #    binaries_artifacts:
 #        path: drm-fbsd12.0-kmod-*.txz
