@@ -6,6 +6,7 @@ task:
 
     build_script:
       - ASSUME_ALWAYS_YES=yes pkg bootstrap -f
+      - sed -i -e 's|quarterly|release_2|g' "${uzip}/etc/pkg/FreeBSD.conf"
       # Information from https://www.freshports.org/x11-wm/plasma5-kwin
       - |
         pkg install -y git \
