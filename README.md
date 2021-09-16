@@ -166,7 +166,7 @@ This repository is intended as a starting point to work with upstream KWin devel
 
 ## Next steps
 
-Once we move on to compiling `kwin_x11` ourselves rather than using the one from the FreeBSD `plasma5-kwin` package, we can:
+In case we ever move on to compiling `kwin_x11` ourselves rather than using the one from the FreeBSD `plasma5-kwin` package, we might:
 
 Run `ccmake .` in the build folder, there are some KWin build-time switches.
 
