@@ -111,7 +111,8 @@ task:
         devel/qt5-testlib \
         x11-toolkits/qt5-widgets \
         x11/qt5-x11extras \
-        textproc/qt5-xml
+        textproc/qt5-xml \
+        kf5-kcodecs
 
     install_script:
       # cd plasma5-kwin
