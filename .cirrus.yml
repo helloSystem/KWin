@@ -138,6 +138,7 @@ task:
         -DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
         ..
+        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \ # Would result in: KF5ConfigWidgets could not be found because dependency KF5Codecs could not be found.
         # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \ # Would result in: KF5ConfigWidgets could not be found because dependency KF5Auth could not befound.
       - make -j$(sysctl -n hw.ncpu)
 #    binaries_artifacts:
