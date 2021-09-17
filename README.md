@@ -158,40 +158,6 @@ This repository is intended as a starting point to work with upstream KWin devel
 * When trying to also replace the libKF5ConfigGui and libKF5ConfigWidgets libraries with stubs, then `kwin_x11` refuses to run even when invoked with `--lock`. Possibly this can be solved by patching the KWin source code. _Any help appreciated._
 * It is not clear how central the following are to the operation of KWin and whether making them optional would be feasible: libKF5Plasma, libKF5GuiAddons, libKF5Package, libKF5ConfigGui, libKF5Service, libKF5CoreAddons, libKF5I18n. Trying to replace those with stubs leads to crashes. Possibly this can be solved by patching the KWin source code. _Any help appreciated._
 
-## Known issues
-
-* Snapping windows to screen edges does not work. It is unclear why.
-* The highlight symbol that should appear when one is moving the mouse at the upper-left edge of the screen is missing. It still needs to be bundled.
-* Seemingly this breaks entering text into the search box in helloSystem Menu
-
-## Next steps
-
-In case we ever move on to compiling `kwin_x11` ourselves rather than using the one from the FreeBSD `plasma5-kwin` package, we might:
-
-Run `ccmake .` in the build folder, there are some KWin build-time switches.
-
-Also, make output includes "feature summary" that lists optional dependencies with explanation for what they are used. They can be disabled like this:
-
-https://cmake.org/cmake/help/latest/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html
-
-```
--DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_KF5Runner=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_Breeze=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_gbm=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
--DCMAKE_DISABLE_FIND_PACKAGE_PkgConfig
-```
-
 ## TODO
 
 * Work with upstream to remove the need for stub libraries by making the respective libraries weak (optional) dependencies or removing them altogether as dependencies
