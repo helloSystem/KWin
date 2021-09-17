@@ -114,7 +114,7 @@ task:
         textproc/qt5-xml \
         kf5-kcodecs \
         kf5-knewstuff \
-        kf5-knewstuff \
+        kf5-sonnet \
         kf5-ktextwidgets
 
     install_script:
