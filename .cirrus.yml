@@ -126,7 +126,13 @@ task:
       - git checkout "Plasma/5.12" # Workaround for: Could not find a configuration file for package "ECM" that is compatible with requested version "5.82".
       - mkdir build ; cd build
       - | 
-        cmake "$KDE_WORKSPACE" -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=release \
+        cmake "$KDE_WORKSPACE" \
+        -DBUILD_TESTING=OFF \
+        -DBUILD_KWIN_BUILD_KCMS=OFF \
+        -DBUILD_KWIN_BUILD_ACTIVITIES=OFF \
+        -DCBUILD_KWIN_BUILD_RUNNERS=OFF \
+        -DCBUILD_KWIN_BUILD_CMS=OFF \
+        -DCMAKE_BUILD_TYPE=release \
         -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
