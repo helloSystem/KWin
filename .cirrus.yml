@@ -128,7 +128,6 @@ task:
       - | 
         cmake "$KDE_WORKSPACE" -DCMAKE_BUILD_TYPE=release \
         -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Runner=TRUE \
@@ -138,6 +137,7 @@ task:
         -DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
         ..
         # The following seem to break CMake:
+        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
         # -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
         # -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
         # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
