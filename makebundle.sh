@@ -100,6 +100,7 @@ cp /usr/local/lib/libbreezeenhancedcommon5.so* ./KWin.app/Resources/lib
 
 # Bundle /usr/local/lib/qt5/plugins/platforms/KWinQpaPlugin.so
 rm ./KWin.app/Resources/plugins/platforms/KWinQpaPlugin.so || true
+mkdir -p ./KWin.app/Resources/plugins/platforms/
 cp /usr/local/lib/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/plugins/platforms/
 
 # Bundle /usr/local/lib/qt5/plugins/platforms/org.kde.kwin.scenes
