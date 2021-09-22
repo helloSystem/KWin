@@ -126,12 +126,11 @@ task:
       - git checkout "Plasma/5.12" # Workaround for: Could not find a configuration file for package "ECM" that is compatible with requested version "5.82".
       - mkdir build ; cd build
       - | 
-        cmake "$KDE_WORKSPACE" -DCMAKE_BUILD_TYPE=release \
-        -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
+        cmake "$KDE_WORKSPACE" \
+        -DBUILD_TESTING=OFF \
+        -DKWIN_BUILD_KCMS=OFF \
+        -DKWIN_BUILD_ACTIVITIES=OFF \
+        -DCMAKE_BUILD_TYPE=release \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_KF5Runner=TRUE \
@@ -140,6 +139,12 @@ task:
         -DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
         -DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
         ..
+        # The following seem to break CMake:
+        # -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
+        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
+        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
+        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
+        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
         # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \ # Would result in: KF5ConfigWidgets could not be found because dependency KF5Codecs could not be found.
         # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \ # Would result in: KF5ConfigWidgets could not be found because dependency KF5Auth could not befound.
       - make -j$(sysctl -n hw.ncpu)

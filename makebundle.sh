@@ -70,6 +70,9 @@ HERE="$(dirname "$(readlink -f "${0}")")"
 
 exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/KWin" --replace --lock --no-kactivities "$@"
 
+pkill -f kglobalaccel5
+kglobalaccel5 &
+
 # TODO: Use QCoreApplication::addLibraryPath() to also load plugins
 # from a location relative to the KWin executable, removing the need for this file
 # QCoreApplication::applicationDirPath() + "/Resources/plugins"
