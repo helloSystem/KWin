@@ -12,4 +12,7 @@ task:
       - make install
       - cd ../..
       - sh ./makebundle.sh	
+      - zip --symlinks -r KWin.app.zip KWin.app
+    binaries_artifacts:
+      path: KWin.app.zip
 
