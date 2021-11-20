@@ -8,19 +8,19 @@ task:
     CIRRUS_CLONE_DEPTH: 1
     GITHUB_TOKEN: ENCRYPTED[69619c80a6f5c4a74d92e14a24b7c4f629a14d8551455e47ae278a7915f3fb826b843f33925f2d4b3972bd774e84a267]
 
-    Build_script:
-      - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
-      - pkg install -y plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
-      - git clone https://github.com/helloSystem/BreezeEnhanced.git
-      - cd BreezeEnhanced
-      - mkdir build && cd build
-      - cmake -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
-      - make install
-      - cd ../..
-      - sh ./makebundle.sh	
-      - zip --symlinks -r KWin.app.zip KWin.app
+  Build_script:
+    - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
+    - pkg install -y plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
+    - git clone https://github.com/helloSystem/BreezeEnhanced.git
+    - cd BreezeEnhanced
+    - mkdir build && cd build
+    - cmake -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
+    - make install
+    - cd ../..
+    - sh ./makebundle.sh	
+    - zip --symlinks -r KWin.app.zip KWin.app
 
-    Upload_script:
-      - export VER=$(uname -r | cut -d "-" -f 1)
-      - case "$CIRRUS_BRANCH" in *pull/*) echo skipping since PR ;; * ) wget -c -q https://github.com/tcnksm/ghr/files/5247714/ghr.zip ; unzip ghr.zip ; ./ghr -prerelease -delete -t "${GITHUB_TOKEN}" -u "${CIRRUS_REPO_OWNER}" -r "${CIRRUS_REPO_NAME}" -c "${CIRRUS_CHANGE_IN_REPO}" "${CIRRUS_BRANCH}"-"${VER}" KWin.app.zip ; esac
+  Upload_script:
+    - export VER=$(uname -r | cut -d "-" -f 1)
+    - case "$CIRRUS_BRANCH" in *pull/*) echo skipping since PR ;; * ) wget -c -q https://github.com/tcnksm/ghr/files/5247714/ghr.zip ; unzip ghr.zip ; ./ghr -prerelease -delete -t "${GITHUB_TOKEN}" -u "${CIRRUS_REPO_OWNER}" -r "${CIRRUS_REPO_NAME}" -c "${CIRRUS_CHANGE_IN_REPO}" "${CIRRUS_BRANCH}"-"${VER}" KWin.app.zip ; esac
       
