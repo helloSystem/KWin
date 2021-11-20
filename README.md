@@ -1,4 +1,4 @@
-# KWin.app
+# KWin.app [![Build Status](https://api.cirrus-ci.com/github/helloSystem/KWin.svg)](https://cirrus-ci.com/github/helloSystem/KWin)
 
 ## Motivation
 
@@ -161,7 +161,6 @@ This repository is intended as a starting point to work with upstream KWin devel
 ## TODO
 
 * Work with upstream to remove the need for stub libraries by making the respective libraries weak (optional) dependencies or removing them altogether as dependencies
-* Get `.cirrus.yml` working that builds KWin from source on FreeBSD 12, containing the source code changes
 
 ## Acknowledgements
 
