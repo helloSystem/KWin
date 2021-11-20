@@ -1,152 +1,18 @@
 task:
     freebsd_instance:
-      matrix:
-        - image: freebsd-12-1-release-amd64
-        # image: freebsd-12-2-release-amd64
+      image_family: freebsd-13-0
 
     build_script:
-      - ASSUME_ALWAYS_YES=yes pkg bootstrap -f
-      - sed -i -e 's|quarterly|release_2|g' "/etc/pkg/FreeBSD.conf"
-      # Information from https://www.freshports.org/x11-wm/plasma5-kwin
-      - |
-        pkg install -y git \
-        devel/evdev-proto \
-        x11-servers/xwayland-devel \
-        x11/plasma-wayland-protocols \
-        devel/cmake \
-        devel/ninja \
-        devel/gettext-tools \
-        x11-themes/plasma5-breeze \
-        devel/kf5-kdoctools \
-        x11/kf5-kinit \
-        x11/plasma5-kwayland-integration \
-        devel/kf5-kservice \
-        devel/pkgconf \
-        x11/libICE \
-        x11/libSM \
-        x11/libX11 \
-        x11/libxcb \
-        x11/libXext \
-        x11/libXi \
-        devel/qt5-buildtools \
-        devel/qt5-qmake \
-        x11-toolkits/qt5-uiplugin \
-        devel/qt5-uitools \
-        x11-servers/xwayland-devel \
-        x11/plasma-wayland-protocols \
-        x11-themes/plasma5-breeze \
-        x11/kf5-kinit \
-        x11/plasma5-kwayland-integration \
-        devel/kf5-kservice \
-        lang/python38 \
-        x11/libICE \
-        x11/libSM \
-        x11/libX11 \
-        x11/libxcb \
-        x11/libXext \
-        x11/libXi \
-        x11-toolkits/qt5-quickcontrols2 \
-        x11-toolkits/qt5-uiplugin \
-        devel/qt5-uitools \
-        x11-toolkits/qt5-virtualkeyboard \
-        x11/libXcursor \
-        graphics/libdrm \
-        graphics/libepoxy \
-        devel/libepoll-shim \
-        x11-fonts/fontconfig \
-        print/freetype2 \
-        x11/libinput \
-        devel/libudev-devd \
-        graphics/lcms2 \
-        graphics/wayland \
-        x11/xcb-util-cursor \
-        x11/xcb-util-wm \
-        x11/xcb-util-image \
-        x11/xcb-util-keysyms \
-        x11/libxkbcommon \
-        devel/gettext-runtime \
-        graphics/mesa-libs \
-        devel/glib20 \
-        devel/gettext-runtime \
-        x11/kf5-kactivities \
-        x11-toolkits/kf5-attica \
-        devel/kf5-kauth \
-        textproc/kf5-kcodecs \
-        x11-toolkits/kf5-kcompletion \
-        devel/kf5-kconfig \
-        x11-toolkits/kf5-kconfigwidgets \
-        devel/kf5-kcoreaddons \
-        devel/kf5-kcrash \
-        x11-wm/plasma5-kdecoration \
-        x11/kf5-kglobalaccel \
-        devel/kf5-ki18n \
-        x11-themes/kf5-kiconthemes \
-        devel/kf5-kidletime \
-        x11-toolkits/kf5-kjobwidgets \
-        devel/kf5-kcmutils \
-        devel/kf5-kdeclarative \
-        devel/kf5-kio \
-        security/plasma5-kscreenlocker \
-        x11/plasma5-kwayland-server \
-        devel/kf5-knewstuff \
-        devel/kf5-knotifications \
-        devel/kf5-kpackage \
-        x11/kf5-plasma-framework \
-        x11/kf5-krunner \
-        textproc/kf5-sonnet \
-        x11-toolkits/kf5-ktextwidgets \
-        x11/kf5-kwayland \
-        x11-toolkits/kf5-kwidgetsaddons \
-        x11/kf5-kwindowsystem \
-        x11-toolkits/kf5-kxmlgui \
-        devel/qt5-concurrent \
-        devel/qt5-core \
-        devel/qt5-dbus \
-        x11-toolkits/qt5-declarative \
-        x11-toolkits/qt5-gui \
-        multimedia/qt5-multimedia \
-        net/qt5-network \
-        devel/qt5-script \
-        comms/qt5-sensors \
-        devel/qt5-testlib \
-        x11-toolkits/qt5-widgets \
-        x11/qt5-x11extras \
-        textproc/qt5-xml \
-        kf5-kcodecs \
-        kf5-knewstuff \
-        kf5-sonnet \
-        kf5-ktextwidgets
+      - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
+      - pkg install -y plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
+      - git clone https://github.com/helloSystem/BreezeEnhanced.git
+      - cd BreezeEnhanced
+      - mkdir build && cd build
+      - cmake -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
+      - make install
+      - cd ../..
+      - sh ./makebundle.sh	
+      - zip --symlinks -r KWin.app.zip KWin.app
+    binaries_artifacts:
+      path: KWin.app.zip
 
-    install_script:
-      # cd plasma5-kwin
-      # make BATCH=yes
-      # mv work/pkg/* "drm-fbsd12.0-kmod-$(uname -r | sed 's,-.*,,')$(uname -m).txz"
-      - git clone https://invent.kde.org/plasma/kwin
-      - cd kwin
-      - git checkout "Plasma/5.12" # Workaround for: Could not find a configuration file for package "ECM" that is compatible with requested version "5.82".
-      - mkdir build ; cd build
-      - | 
-        cmake "$KDE_WORKSPACE" \
-        -DBUILD_TESTING=OFF \
-        -DKWIN_BUILD_KCMS=OFF \
-        -DKWIN_BUILD_ACTIVITIES=OFF \
-        -DCMAKE_BUILD_TYPE=release \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Activities=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_KF5Runner=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_Breeze=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_gbm=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_X11_XCB=TRUE \
-        -DCMAKE_DISABLE_FIND_PACKAGE_Libcap=TRUE \
-        ..
-        # The following seem to break CMake:
-        # -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=TRUE \
-        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Attica=TRUE \
-        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffCore=TRUE \
-        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5NewStuffQuick=TRUE \
-        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Sonnet=TRUE \
-        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Codecs=TRUE \ # Would result in: KF5ConfigWidgets could not be found because dependency KF5Codecs could not be found.
-        # -DCMAKE_DISABLE_FIND_PACKAGE_KF5Auth=TRUE \ # Would result in: KF5ConfigWidgets could not be found because dependency KF5Auth could not befound.
-      - make -j$(sysctl -n hw.ncpu)
-#    binaries_artifacts:
-#        path: drm-fbsd12.0-kmod-*.txz

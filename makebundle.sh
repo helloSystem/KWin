@@ -68,13 +68,6 @@ cat > ./KWin.app/KWin <<\EOF
 
 HERE="$(dirname "$(readlink -f "${0}")")"
 
-# Temporary workaround for https://github.com/helloSystem/ISO/issues/316
-if [ ! -z  $(sysctl hw.nvidia.version 2>/dev/null) ] ; then
-  export KWIN_COMPOSE=O2
-  export KWIN_OPENGL_INTERFACE="egl"
-  export KWIN_TRIPLE_BUFFER=1
-fi
-
 exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/KWin" --replace --lock --no-kactivities "$@"
 
 pkill -f kglobalaccel5
@@ -117,7 +110,7 @@ cp /usr/local/lib/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/pl
 cp -r /usr/local/lib/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
 
 # Bundle libstdc++.so.6
-cp -r /usr/local/lib/gcc10/libstdc++.so.6 ./KWin.app/Resources/lib
+#cp -r /usr/local/lib/gcc10/libstdc++.so.6 ./KWin.app/Resources/lib
 
 # Get these loaded from within the .app bundle using $XDG_DATA_DIRS
 mkdir -p ./KWin.app/Resources/share/
