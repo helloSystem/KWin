@@ -4,6 +4,10 @@ task:
         image_family: freebsd-13-0
         image_family: freebsd-12-0
 
+  env:
+    CIRRUS_CLONE_DEPTH: 1
+    GITHUB_TOKEN: ENCRYPTED[69619c80a6f5c4a74d92e14a24b7c4f629a14d8551455e47ae278a7915f3fb826b843f33925f2d4b3972bd774e84a267]
+
     Build_script:
       - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
       - pkg install -y plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
