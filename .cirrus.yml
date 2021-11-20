@@ -4,6 +4,6 @@ task:
 
     build_script:
       - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
-      - pkg install -y plasma5_kwin
+      - pkg install -y plasma5-kwin
       - makebundle.sh	
 
