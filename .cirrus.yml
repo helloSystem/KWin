@@ -1,8 +1,10 @@
 task:
     freebsd_instance:
-      image_family: freebsd-13-0
+      matrix:
+        image_family: freebsd-13-0
+        image_family: freebsd-12-0
 
-    build_script:
+    Build_script:
       - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
       - pkg install -y plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
       - git clone https://github.com/helloSystem/BreezeEnhanced.git
@@ -13,6 +15,7 @@ task:
       - cd ../..
       - sh ./makebundle.sh	
       - zip --symlinks -r KWin.app.zip KWin.app
-    binaries_artifacts:
-      path: KWin.app.zip
 
+    Upload_script:
+      - export VER=$(uname -r | cut -d "-" -f 1)
+      - case "$CIRRUS_BRANCH" in *pull/*) echo skipping since PR ;; * ) wget -c -q https://github.com/tcnksm/ghr/files/5247714/ghr.zip ; unzip ghr.zip ; ./ghr -prerelease -delete -t "${GITHUB_TOKEN}" -u "${CIRRUS_REPO_OWNER}" -r "${CIRRUS_REPO_NAME}" -c "${CIRRUS_CHANGE_IN_REPO}" "${CIRRUS_BRANCH}"-"${VER}" KWin.app.zip ; esac
