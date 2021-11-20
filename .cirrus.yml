@@ -4,6 +4,12 @@ task:
 
     build_script:
       - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
-      - pkg install -y plasma5-kwin
-      - makebundle.sh	
+      - pkg install -y plasma5-kwin git cmake
+      - git clone https://github.com/helloSystem/BreezeEnhanced.git
+      - cd BreezeEnhanced
+      - mkdir build && cd build
+      - cmake -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
+      - make install
+      - cd ../..
+      - sh ./makebundle.sh	
 
