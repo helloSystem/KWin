@@ -1,8 +1,8 @@
 task:
-    freebsd_instance:
-      matrix:
-        image_family: freebsd-13-0
-        image_family: freebsd-12-0
+  freebsd_instance:
+    matrix:
+      image_family: freebsd-13-0
+      image_family: freebsd-12-2
 
   env:
     CIRRUS_CLONE_DEPTH: 1
@@ -23,3 +23,4 @@ task:
     Upload_script:
       - export VER=$(uname -r | cut -d "-" -f 1)
       - case "$CIRRUS_BRANCH" in *pull/*) echo skipping since PR ;; * ) wget -c -q https://github.com/tcnksm/ghr/files/5247714/ghr.zip ; unzip ghr.zip ; ./ghr -prerelease -delete -t "${GITHUB_TOKEN}" -u "${CIRRUS_REPO_OWNER}" -r "${CIRRUS_REPO_NAME}" -c "${CIRRUS_CHANGE_IN_REPO}" "${CIRRUS_BRANCH}"-"${VER}" KWin.app.zip ; esac
+      
