@@ -50,7 +50,7 @@ env LD_LIBRARY_PATH=. ldd $(which kwin_x11) | grep  '\./'
 echo "Deploying into bundle"
 rm -rf KWin.app || true
 mkdir -p KWin.app/Resources/lib
-cp $(which kwin_x11) KWin.app/Resources/KWin
+cp $(which kwin_x11) KWin.app/Resources/kwin_x11 # Needs to retain its name in order for correct mesa configs to apply
 mv lib* KWin.app/Resources/lib/
 patchelf --set-rpath '$ORIGIN:'$(patchelf --print-rpath KWin.app/Resources/KWin) KWin.app/Resources/KWin
 
@@ -68,7 +68,7 @@ cat > ./KWin.app/KWin <<\EOF
 
 HERE="$(dirname "$(readlink -f "${0}")")"
 
-exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/KWin" --replace --lock --no-kactivities "$@"
+exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/kwin_x11" --replace --lock --no-kactivities "$@"
 
 pkill -f kglobalaccel5
 kglobalaccel5 &
