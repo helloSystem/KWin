@@ -68,7 +68,7 @@ cat > ./KWin.app/KWin <<\EOF
 
 HERE="$(dirname "$(readlink -f "${0}")")"
 
-exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/KWin" --replace --lock --no-kactivities "$@"
+exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/kwin_x11" --replace --lock --no-kactivities "$@"
 
 pkill -f kglobalaccel5
 kglobalaccel5 &
