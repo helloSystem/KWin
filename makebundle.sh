@@ -52,13 +52,13 @@ rm -rf KWin.app || true
 mkdir -p KWin.app/Resources/lib
 cp $(which kwin_x11) KWin.app/Resources/kwin_x11 # Needs to retain its name in order for correct mesa configs to apply
 mv lib* KWin.app/Resources/lib/
-patchelf --set-rpath '$ORIGIN:'$(patchelf --print-rpath KWin.app/Resources/KWin) KWin.app/Resources/KWin
+patchelf --set-rpath '$ORIGIN:'$(patchelf --print-rpath KWin.app/Resources/kwin_x11) KWin.app/Resources/kwin_x11
 
 # Also bundle the rest of KF5 that is not stubbed
-cp -n $(ldd './KWin.app/Resources/KWin' | grep KF5 | awk '{print $3}' | xargs) ./KWin.app/Resources/lib 2>/dev/null
+cp -n $(ldd './KWin.app/Resources/kwin_x11' | grep KF5 | awk '{print $3}' | xargs) ./KWin.app/Resources/lib 2>/dev/null
 # Also bundle kwin libraries
-cp -n $(ldd './KWin.app/Resources/KWin' | grep libkwin | awk '{print $3}' | xargs) ./KWin.app/Resources/lib 2>/dev/null
-cp -n $(ldd './KWin.app/Resources/KWin' | grep libkdecorations | awk '{print $3}' | xargs) ./KWin.app/Resources/lib 2>/dev/null
+cp -n $(ldd './KWin.app/Resources/kwin_x11' | grep libkwin | awk '{print $3}' | xargs) ./KWin.app/Resources/lib 2>/dev/null
+cp -n $(ldd './KWin.app/Resources/kwin_x11' | grep libkdecorations | awk '{print $3}' | xargs) ./KWin.app/Resources/lib 2>/dev/null
 
 # Bundle /usr/local/lib/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so
 mkdir -p ./KWin.app/Resources/plugins/org.kde.kwin.platforms
