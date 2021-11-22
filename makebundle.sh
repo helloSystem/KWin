@@ -68,6 +68,7 @@ cat > ./KWin.app/KWin <<\EOF
 
 HERE="$(dirname "$(readlink -f "${0}")")"
 
+# Note: The name 'kwin_x11' is hardcoded, e.g., in /usr/local/share/drirc.d/01-freebsd.conf, so it must not be changed
 exec env XDG_DATA_DIRS="${HERE}/Resources/share/:${XDG_DATA_DIRS}" env QT_PLUGIN_PATH="${HERE}/Resources/plugins:/usr/local/lib/qt5/plugins/" LD_LIBRARY_PATH="${HERE}/Resources/lib:$LD_LIBRARY_PATH" "${HERE}/Resources/kwin_x11" --replace --lock --no-kactivities "$@"
 
 pkill -f kglobalaccel5
