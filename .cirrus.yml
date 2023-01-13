@@ -6,7 +6,7 @@ task:
   only_if: $CIRRUS_TAG !=~ '..*' # Prevent endless build loop from automatically created releases
   env:
     CIRRUS_CLONE_DEPTH: 1
-    GITHUB_TOKEN: ENCRYPTED[69619c80a6f5c4a74d92e14a24b7c4f629a14d8551455e47ae278a7915f3fb826b843f33925f2d4b3972bd774e84a267]
+    GITHUB_TOKEN: ENCRYPTED[98d43ce2ae88c126c10a7a113aa7ff7cafec515c006d73e6b852aec4e9db7d49be5c6e17f0f2b40858fcc6a599411b2d]
 
   Build_script:
     - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
