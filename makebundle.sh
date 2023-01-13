@@ -102,6 +102,9 @@ mkdir -p ./KWin.app/Resources/plugins/org.kde.kdecoration2/
 cp /usr/local/lib/qt5/plugins/org.kde.kdecoration2/breezeenhanced.so ./KWin.app/Resources/plugins/org.kde.kdecoration2/
 cp /usr/local/lib/libbreezeenhancedcommon5.so* ./KWin.app/Resources/lib
 
+# Bundle libkwinxrenderutils
+cp /usr/local/lib/libkwinxrenderutils.so* ./KWin.app/Resources/lib
+
 # Bundle /usr/local/lib/qt5/plugins/platforms/KWinQpaPlugin.so
 rm ./KWin.app/Resources/plugins/platforms/KWinQpaPlugin.so || true
 mkdir -p ./KWin.app/Resources/plugins/platforms/
