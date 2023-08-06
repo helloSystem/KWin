@@ -21,7 +21,8 @@ readelf -d $(which kwin_x11) | grep "NEEDED" | awk '{print $5}' | sed -e 's|\[||
 ./so-stub.sh /usr/local/lib/libKF5Crash.so.5
 ./so-stub.sh /usr/local/lib/libKF5WidgetsAddons.so.5
 ./so-stub.sh /usr/local/lib/libKF5Attica.so.5
-./so-stub.sh /usr/local/lib/libKF5Activities.so.5 # Leads to crash if --no-kactivities is not used
+# ./so-stub.sh /usr/local/lib/libKF5Activities.so.5 # Leads to crash if --no-kactivities is not used
+# As of FreeBSD 13.2 with quarterly packages in Q3/2023, it leads to crash even with --no-kactivities
 
 # FIXME: version Qt_5 required by /usr/local/lib/libKF5GuiAddons.so.5 not defined
 # How can we stub this?
