@@ -9,7 +9,9 @@ task:
     GITHUB_TOKEN: ENCRYPTED[98d43ce2ae88c126c10a7a113aa7ff7cafec515c006d73e6b852aec4e9db7d49be5c6e17f0f2b40858fcc6a599411b2d]
 
   Build_script:
+    # !!! MAKE BACKUPS BEFORE CHANGING release_2 !!! Newer packages may have more dependencies
     - sed -i '' -e 's|quarterly|release_2|g' "${uzip}/etc/pkg/FreeBSD.conf"
+    # !!! MAKE BACKUPS BEFORE CHANGING release_2 !!! Newer packages may have more dependencies
     - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
     - pkg install -y plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
     - git clone https://github.com/helloSystem/BreezeEnhanced.git
