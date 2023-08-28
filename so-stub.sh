@@ -1,8 +1,5 @@
 #!/bin/sh
 
-set -e
-set -x
-
 # This has been tested on FreeBSD 12.2
 
 if [ "$#" -ne 1 ] ; then
@@ -24,7 +21,7 @@ while IFS= read -r line; do
 done < symbols.txt > compilerinput.txt
 
 # Compile and strip
-c++ -shared -Wall -fPIC -DLNAME="${STUB_LIB}" -DFNAME="${LIB_NAME}" stubs.c \@compilerinput.txt -o "${STUB_LIB}"
+c++ -Wno-deprecated -shared -Wall -fPIC -DLNAME="${STUB_LIB}" -DFNAME="${LIB_NAME}" stubs.cpp \@compilerinput.txt -o "${STUB_LIB}"
 strip "${STUB_LIB}"
 ls -lh $(readlink -f "${ORIG_LIB}")
 ls -lh "${STUB_LIB}"
