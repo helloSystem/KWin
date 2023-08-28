@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -x
+
 # This has been tested on FreeBSD 12.2
 
 if [ "$#" -ne 1 ] ; then
