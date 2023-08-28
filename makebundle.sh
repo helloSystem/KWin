@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Exit on errors
-set -e
+# Be verbose
+set -x
 
 # This has been tested on FreeBSD 13.2
 
