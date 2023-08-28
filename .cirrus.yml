@@ -10,7 +10,7 @@ task:
 
   Build_script:
     - ASSUME_ALWAYS_YES=yes pkg bootstrap -f 
-    - pkg install -y x11/plasma5-kwayland-server plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
+    - pkg install -y plasma5-kwin git cmake pkgconf kf5-kwindowsystem kf5-extra-cmake-modules kf5-kcoreaddons kf5-kguiaddons kf5-kconfigwidgets plasma5-kdecoration qt5-core qt5-x11extras qt5-widgets qt5-qmake qt5-buildtools qt5-linguisttools patchelf wget zip
     - git clone https://github.com/helloSystem/BreezeEnhanced.git
     - cd BreezeEnhanced
     - mkdir build && cd build
