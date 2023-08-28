@@ -24,7 +24,7 @@ while IFS= read -r line; do
 done < symbols.txt > compilerinput.txt
 
 # Compile and strip
-gcc -shared -Wall -fPIC -DLNAME="${STUB_LIB}" -DFNAME="${LIB_NAME}" stubs.c \@compilerinput.txt -o "${STUB_LIB}"
+c++ -shared -Wall -fPIC -DLNAME="${STUB_LIB}" -DFNAME="${LIB_NAME}" stubs.c \@compilerinput.txt -o "${STUB_LIB}"
 strip "${STUB_LIB}"
 ls -lh $(readlink -f "${ORIG_LIB}")
 ls -lh "${STUB_LIB}"
