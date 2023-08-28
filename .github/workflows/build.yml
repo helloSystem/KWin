@@ -1,0 +1,40 @@
+name: Build for Ubuntu
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-22.04
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git cmake pkg-config build-essential libkf5windowsystem-dev libkf5coreaddons-dev libkf5guiaddons-dev libkf5configwidgets-dev libkf5decoration-dev qtbase5-dev qttools5-dev-tools qtdeclarative5-dev libqt5x11extras5-dev libkf5iconthemes-dev libkf5configwidgets-dev patchelf wget zip
+
+      - name: Clone BreezeEnhanced
+        run: git clone https://github.com/helloSystem/BreezeEnhanced.git
+
+      - name: Build and Install
+        run: |
+          cd BreezeEnhanced
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
+          make install
+          cd ../..
+
+      - name: Make Bundle
+        run: sh ./makebundle.sh
+
+      - name: Zip Bundle
+        run: zip --symlinks -r KWin_Ubuntu.zip KWin.app
