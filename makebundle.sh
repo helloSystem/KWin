@@ -72,10 +72,18 @@ mv lib* KWin.app/Resources/lib/
 patchelf --set-rpath '$ORIGIN:'"$(patchelf --print-rpath KWin.app/Resources/kwin_x11)" KWin.app/Resources/kwin_x11
 
 # Also bundle the rest of KF5 that is not stubbed
-cp -n "$(ldd './KWin.app/Resources/kwin_x11' | grep KF5 | awk '{print $3}' | xargs)" ./KWin.app/Resources/lib
-# Also bundle kwin libraries
-cp -n "$(ldd './KWin.app/Resources/kwin_x11' | grep libkwin | awk '{print $3}' | xargs)" ./KWin.app/Resources/lib
-cp -n "$(ldd './KWin.app/Resources/kwin_x11' | grep libkdecorations | awk '{print $3}' | xargs)" ./KWin.app/Resources/lib
+# Bundle KF5 libraries
+for libkf5 in $(ldd './KWin.app/Resources/kwin_x11' | awk '/KF5/ {print $3}'); do
+    cp -n "$libkf5" ./KWin.app/Resources/lib/
+done
+# Bundle kwin libraries
+for libkwin in $(ldd './KWin.app/Resources/kwin_x11' | awk '/libkwin/ {print $3}'); do
+    cp -n "$libkwin" ./KWin.app/Resources/lib/
+done
+# Bundle libkdecorations libraries
+for libkdecorations in $(ldd './KWin.app/Resources/kwin_x11' | awk '/libkdecorations/ {print $3}'); do
+    cp -n "$libkdecorations" ./KWin.app/Resources/lib/
+done
 
 # Bundle "${PREFIX}/lib/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so
 mkdir -p ./KWin.app/Resources/plugins/org.kde.kwin.platforms
