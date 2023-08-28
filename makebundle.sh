@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Exit on errors
+set -e
+
 # This has been tested on FreeBSD 13.2
 
 PREFIX=/usr/local
