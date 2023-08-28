@@ -135,10 +135,10 @@ mkdir -p ./KWin.app/Resources/share/
 cp -r "${PREFIX}"/share/kwin ./KWin.app/Resources/share/
 
 # Glow effect when mouse moves to upper-left corner
-mkdir -p ./KWin.app/Resources/share/plasma/desktoptheme/default/widgets/
-cp "${PREFIX}"/share/plasma/desktoptheme/default/widgets/glowbar.svgz ./KWin.app/Resources/share/plasma/desktoptheme/default/widgets/
+mkdir -p ./KWin.app/Resources/share/plasma/desktoptheme/widgets/
+cp "${PREFIX}"/share/plasma/desktoptheme/widgets/glowbar.svgz ./KWin.app/Resources/share/plasma/desktoptheme/default/widgets/
 # Window snap effect preview
-cp "${PREFIX}"/share/plasma/desktoptheme/default/widgets/translucentbackground.svgz ./KWin.app/Resources/share/plasma/desktoptheme/default/widgets/
+cp "${PREFIX}"/share/plasma/desktoptheme/widgets/translucentbackground.svgz ./KWin.app/Resources/share/plasma/desktoptheme/default/widgets/
 
 # Icon
 wget -c "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Breezeicons-apps-48-kwin.svg/256px-Breezeicons-apps-48-kwin.svg.png" -O KWin.app/Resources/KWin.png
