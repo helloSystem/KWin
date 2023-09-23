@@ -137,7 +137,9 @@ cp "${path}"/libkwinxrenderutils.so* ./KWin.app/Resources/lib
 # Bundle "${path}"/qt5/plugins/platforms/KWinQpaPlugin.so
 rm ./KWin.app/Resources/plugins/platforms/KWinQpaPlugin.so || true
 mkdir -p ./KWin.app/Resources/plugins/platforms/
-cp "${path}"/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/plugins/platforms/
+if [ "$(uname)" != "Linux" ]; then
+  cp "${path}"/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/plugins/platforms/
+fi
 
 # Bundle "${PREFIX}"/lib/qt5/plugins/platforms/org.kde.kwin.scenes
 cp -r "${path}"/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
