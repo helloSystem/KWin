@@ -34,7 +34,7 @@ jobs:
           cd ../..
 
       - name: Make Bundle
-        run: sh ./makebundle.sh
+        run: sh -ex ./makebundle.sh
 
       - name: Zip Bundle
         run: zip --symlinks -r KWin_Ubuntu.zip KWin.app
