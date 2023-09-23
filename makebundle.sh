@@ -142,10 +142,9 @@ if [ "$(uname)" != "Linux" ]; then
 fi
 
 # Bundle "${PREFIX}"/lib/qt5/plugins/platforms/org.kde.kwin.scenes
-cp -r "${path}"/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
-
-# Bundle libstdc++.so.6
-#cp -r "${path}"/gcc10/libstdc++.so.6 ./KWin.app/Resources/lib
+if [ "$(uname)" != "Linux" ]; then
+  cp -r "${path}"/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
+fi
 
 # Get these loaded from within the .app bundle using $XDG_DATA_DIRS
 mkdir -p ./KWin.app/Resources/share/
