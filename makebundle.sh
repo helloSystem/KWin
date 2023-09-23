@@ -153,7 +153,7 @@ cp -r "${PREFIX}"/share/kwin ./KWin.app/Resources/share/
 # Glow effect when mouse moves to upper-left corner
 mkdir -p ./KWin.app/Resources/share/plasma/desktoptheme/widgets/
 
-if [ "$(uname)" == "Linux" ]; then
+if [ "$(uname)" = "Linux" ]; then
   cp "${PREFIX}"/share/plasma/desktoptheme/default/widgets/glowbar.svgz ./KWin.app/Resources/share/plasma/desktoptheme/widgets/
   # Window snap effect preview
   cp "${PREFIX}"/share/plasma/desktoptheme/default/widgets/translucentbackground.svgz ./KWin.app/Resources/share/plasma/desktoptheme/widgets/
