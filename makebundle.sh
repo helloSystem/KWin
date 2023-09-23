@@ -129,7 +129,7 @@ chmod +x ./KWin.app/KWin
 # FIXME: Is there a way to tell KWin to use BreezeEnhanced via an environment variable?
 mkdir -p ./KWin.app/Resources/plugins/org.kde.kdecoration2/
 cp "${path}/qt5/plugins/org.kde.kdecoration2/breezeenhanced.so ./KWin.app/Resources/plugins/org.kde.kdecoration2/
-cp "${path}/libbreezeenhancedcommon5.so* ./KWin.app/Resources/lib
+cp "${PREFIX}/lib/libbreezeenhancedcommon5.so* ./KWin.app/Resources/lib
 
 # Bundle libkwinxrenderutils
 cp "${path}/libkwinxrenderutils.so* ./KWin.app/Resources/lib
