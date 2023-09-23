@@ -33,6 +33,10 @@ libKF5Attica.so.5
 "
 
 path="${PREFIX}/lib/"
+if [ "$(uname)" = "Linux" ]; then
+    path="${PREFIX}/lib/x86_64-linux-gnu/"
+fi
+
 for library in $libraries; do
     ./so-stub.sh "$path$library"
 done
