@@ -91,7 +91,7 @@ done
 
 # Bundle "${PREFIX}/lib/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so
 mkdir -p ./KWin.app/Resources/plugins/org.kde.kwin.platforms
-cp "${PREFIX}/lib/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so" ./KWin.app/Resources/plugins/org.kde.kwin.platforms/
+cp "${path}/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so" ./KWin.app/Resources/plugins/org.kde.kwin.platforms/
 cat > ./KWin.app/KWin <<\EOF
 #!/bin/sh
 
@@ -128,22 +128,22 @@ chmod +x ./KWin.app/KWin
 # Bundle BreezeEnhanced
 # FIXME: Is there a way to tell KWin to use BreezeEnhanced via an environment variable?
 mkdir -p ./KWin.app/Resources/plugins/org.kde.kdecoration2/
-cp "${PREFIX}"/lib/qt5/plugins/org.kde.kdecoration2/breezeenhanced.so ./KWin.app/Resources/plugins/org.kde.kdecoration2/
-cp "${PREFIX}"/lib/libbreezeenhancedcommon5.so* ./KWin.app/Resources/lib
+cp "${path}/qt5/plugins/org.kde.kdecoration2/breezeenhanced.so ./KWin.app/Resources/plugins/org.kde.kdecoration2/
+cp "${path}/libbreezeenhancedcommon5.so* ./KWin.app/Resources/lib
 
 # Bundle libkwinxrenderutils
-cp "${PREFIX}"/lib/libkwinxrenderutils.so* ./KWin.app/Resources/lib
+cp "${path}/libkwinxrenderutils.so* ./KWin.app/Resources/lib
 
-# Bundle "${PREFIX}/lib/qt5/plugins/platforms/KWinQpaPlugin.so
+# Bundle "${path}/qt5/plugins/platforms/KWinQpaPlugin.so
 rm ./KWin.app/Resources/plugins/platforms/KWinQpaPlugin.so || true
 mkdir -p ./KWin.app/Resources/plugins/platforms/
-cp "${PREFIX}"/lib/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/plugins/platforms/
+cp "${path}/qt5/plugins/platforms/KWinQpaPlugin.so ./KWin.app/Resources/plugins/platforms/
 
 # Bundle "${PREFIX}"/lib/qt5/plugins/platforms/org.kde.kwin.scenes
-cp -r "${PREFIX}"/lib/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
+cp -r "${path}/qt5/plugins/org.kde.kwin.scenes ./KWin.app/Resources/plugins/
 
 # Bundle libstdc++.so.6
-#cp -r "${PREFIX}"/lib/gcc10/libstdc++.so.6 ./KWin.app/Resources/lib
+#cp -r "${path}/gcc10/libstdc++.so.6 ./KWin.app/Resources/lib
 
 # Get these loaded from within the .app bundle using $XDG_DATA_DIRS
 mkdir -p ./KWin.app/Resources/share/
