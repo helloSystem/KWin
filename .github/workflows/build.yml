@@ -38,3 +38,8 @@ jobs:
 
       - name: Zip Bundle
         run: zip --symlinks -r KWin_Ubuntu.zip KWin.app
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: KWin_Ubuntu.zip
