@@ -2,7 +2,7 @@ task:
   freebsd_instance:
     matrix:
       image_family: freebsd-13-2
-      # image_family: freebsd-14-0-snap
+      image_family: freebsd-14-0
   only_if: $CIRRUS_TAG !=~ '..*' # Prevent endless build loop from automatically created releases
   env:
     CIRRUS_CLONE_DEPTH: 1
